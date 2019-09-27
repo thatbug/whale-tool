@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--基本信息-->
+    <groupId>org.thatbug</groupId>
+    <artifactId>whale-tool</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>whale-tool</name>
+
+    <!--描述-->
+    <description>
+        鲸鱼 平台的工具类
+    </description>
+    <url>https://github.com/thatbug/whale-tool.git</url>
+    <developers>
+        <developer>
+            <id>thatbug</id>
+            <name>秦宗列</name>
+            <email>qinzonglie@163.com</email>
+            <roles>
+                <role>java开发工程师</role>
+            </roles>
+            <timezone>2019-09-16 15:20:00</timezone>
+        </developer>
+    </developers>
+    <!--软件配置管理-->
+    <scm>
+        <url>https://github.com/thatbug/whale-tool.git</url>
+        <connection>https://github.com/thatbug/whale-tool.git</connection>
+        <developerConnection>https://github.com/thatbug</developerConnection>
+    </scm>
+
+    <!--全局参数-->
+    <properties>
+        <!--工具版本-->
+        <whale.tool.version>1.0.0</whale.tool.version>
+
+        <!--java版本-->
+        <java.version>1.8</java.version>
+
+        <!--maven信息-->
+        <maven.plugin.version>3.8.0</maven.plugin.version>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!--spring版本-->
+        <spring.boot.version>2.1.7.RELEASE</spring.boot.version>
+        <spring.cloud.version>Greenwich.SR2</spring.cloud.version>
+        <spring.platform.version>Cairo-SR8</spring.platform.version>
+        <spring.boot.admin.version>2.1.5</spring.boot.admin.version>
+
+        <!--生成配置文件版本-->
+        <mica.auto.version>1.1.0</mica.auto.version>
+
+        <!--阿里巴巴云版本-->
+        <alibaba.cloud.version>2.1.0.RELEASE</alibaba.cloud.version>
+
+        <!--swagger版本-->
+        <swagger.version>2.9.2</swagger.version>
+        <swagger.models.version>1.5.21</swagger.models.version>
+        <swagger.bootstrapui.version>1.9.4</swagger.bootstrapui.version>
+
+        <!--序列化程序版本-->
+        <protostuff.version>1.6.0</protostuff.version>
+        <disruptor.version>3.4.2</disruptor.version>
+
+        <mybatis.plus.version>3.1.2</mybatis.plus.version>
+        <curator.framework.version>4.0.1</curator.framework.version>
+
+    </properties>
+
+
+    <modules>
+        <module>whale-core-launch</module>
+        <module>whale-core-tool</module>
+        <module>whale-core-test</module>
+        <module>whale-core-oss</module>
+        <module>whale-core-secure</module>
+        <module>whale-core-mybatis</module>
+        <module>whale-core-develop</module>
+        <module>whale-core-cloud</module>
+        <module>whale-core-swagger</module>
+        <module>whale-core-log</module>
+        <module>whale-core-boot</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.spring.platform</groupId>
+                <artifactId>platform-bom</artifactId>
+                <version>${spring.platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--配置-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--监控接口-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!--重试框架-->
+        <dependency>
+            <groupId>org.springframework.retry</groupId>
+            <artifactId>spring-retry</artifactId>
+        </dependency>
+        <!--热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--简化代码-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!--生成配置文件-->
+        <dependency>
+            <groupId>net.dreamlu</groupId>
+            <artifactId>mica-auto</artifactId>
+            <version>${mica.auto.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <finalName>${project.name}</finalName>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+        </profile>
+    </profiles>
+
+</project>
