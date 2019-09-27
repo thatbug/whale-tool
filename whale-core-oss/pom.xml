@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>whale-tool</artifactId>
+        <groupId>org.thatbug</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>whale-core-oss</artifactId>
+    <name>${project.artifactId}</name>
+    <version>${whale.tool.version}</version>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.thatbug</groupId>
+            <artifactId>whale-core-tool</artifactId>
+            <version>${whale.tool.version}</version>
+        </dependency>
+        <!--QiNiu-->
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>7.2.18</version>
+        </dependency>
+    </dependencies>
+</project>
