@@ -27,6 +27,7 @@
             <timezone>2019-09-16 15:20:00</timezone>
         </developer>
     </developers>
+
     <!--软件配置管理-->
     <scm>
         <url>https://github.com/thatbug/whale-tool.git</url>
@@ -38,14 +39,6 @@
     <properties>
         <!--工具版本-->
         <whale.tool.version>1.0.0</whale.tool.version>
-
-        <!--java版本-->
-        <java.version>1.8</java.version>
-
-        <!--maven信息-->
-        <maven.plugin.version>3.8.0</maven.plugin.version>
-        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!--spring版本-->
         <spring.boot.version>2.1.7.RELEASE</spring.boot.version>
@@ -165,7 +158,6 @@
 
     <build>
         <finalName>${project.name}</finalName>
-
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -177,35 +169,6 @@
                 </includes>
             </resource>
         </resources>
-
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.plugin.version}</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>UTF-8</encoding>
-                    <compilerArgs>
-                        <arg>-parameters</arg>
-                    </compilerArgs>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
-                <configuration>
-                    <skipTests>true</skipTests>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 
     <profiles>

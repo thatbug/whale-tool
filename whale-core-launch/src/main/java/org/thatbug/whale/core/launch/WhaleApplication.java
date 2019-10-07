@@ -35,7 +35,7 @@ public class WhaleApplication {
         return builder.run(args);
     }
 
-    public static SpringApplicationBuilder createSpringApplicationBuilder(String appName, Class source, String... args) {
+    private static SpringApplicationBuilder createSpringApplicationBuilder(String appName, Class source, String... args) {
         Assert.hasText(appName, "[appName]服务名不能为空");
         // 读取环境变量，使用spring boot的规则
         ConfigurableEnvironment environment = new StandardEnvironment();
@@ -47,10 +47,6 @@ public class WhaleApplication {
         String[] activeProfiles = environment.getActiveProfiles();
         // 判断环境:dev、test、prod
         List<String> profiles = Arrays.asList(activeProfiles);
-        // 预设的环境
-        List<String> presetProfiles = new ArrayList<>(Arrays.asList(AppConstant.DEV_CODE, AppConstant.TEST_CODE, AppConstant.PROD_CODE));
-        // 交集
-        presetProfiles.retainAll(profiles);
         // 当前使用
         List<String> activeProfileList = new ArrayList<>(profiles);
         Function<Object[], String> joinFun = StringUtils::arrayToCommaDelimitedString;

@@ -13,7 +13,7 @@ import java.util.Enumeration;
  * @date 18:43 2019/9/16
  */
 public class INetUtil {
-    public static final String LOCAL_HOST = "127.0.0.1";
+    private static final String LOCAL_HOST = "127.0.0.1";
 
     /**
      * 获取 服务器 hostname

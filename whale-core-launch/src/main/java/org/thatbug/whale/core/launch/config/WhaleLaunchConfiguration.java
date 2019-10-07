@@ -16,9 +16,7 @@ import org.thatbug.whale.core.launch.props.WhaleProperties;
 @Configuration
 @AllArgsConstructor
 @Order(Ordered.HIGHEST_PRECEDENCE)
-@EnableConfigurationProperties({
-        WhaleProperties.class
-})
+@EnableConfigurationProperties({WhaleProperties.class})
 public class WhaleLaunchConfiguration {
 
 }
