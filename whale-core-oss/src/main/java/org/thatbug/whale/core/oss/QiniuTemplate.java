@@ -115,7 +115,7 @@ public class QiniuTemplate {
 
     @SneakyThrows
     public WhaleFile putFile(MultipartFile file) {
-        return putFile(ossProperties.getBucketName(), file.getOriginalFilename(), file);
+        return putFile(file.getOriginalFilename(), file.getInputStream());
     }
 
 
