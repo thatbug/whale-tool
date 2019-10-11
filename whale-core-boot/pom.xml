@@ -33,27 +33,12 @@
         <!-- wlade -->
         <dependency>
             <groupId>org.thatbug</groupId>
-            <artifactId>whale-core-launch</artifactId>
-            <version>${whale.tool.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.thatbug</groupId>
-            <artifactId>whale-core-cloud</artifactId>
-            <version>${whale.tool.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.thatbug</groupId>
-            <artifactId>whale-core-tool</artifactId>
-            <version>${whale.tool.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.thatbug</groupId>
-            <artifactId>whale-core-secure</artifactId>
-            <version>${whale.tool.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.thatbug</groupId>
             <artifactId>whale-core-log</artifactId>
+            <version>${whale.tool.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.thatbug</groupId>
+            <artifactId>whale-core-mybatis</artifactId>
             <version>${whale.tool.version}</version>
         </dependency>
         <dependency>
@@ -61,38 +46,27 @@
             <artifactId>whale-core-swagger</artifactId>
             <version>${whale.tool.version}</version>
         </dependency>
-        <!--Swagger-->
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.swagger</groupId>
-                    <artifactId>swagger-models</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>org.thatbug</groupId>
+            <artifactId>whale-core-develop</artifactId>
+            <version>${whale.tool.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-models</artifactId>
-            <version>${swagger.models.version}</version>
+            <groupId>org.thatbug</groupId>
+            <artifactId>whale-core-oss</artifactId>
+            <version>${whale.tool.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>swagger-bootstrap-ui</artifactId>
-            <version>${swagger.bootstrapui.version}</version>
+            <groupId>org.thatbug</groupId>
+            <artifactId>whale-core-test</artifactId>
+            <version>${whale.tool.version}</version>
         </dependency>
+
+
         <!--Redis-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <!--MyBatis-->
-        <dependency>
-            <groupId>org.thatbug</groupId>
-            <artifactId>whale-core-mybatis</artifactId>
-            <version>${whale.tool.version}</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>

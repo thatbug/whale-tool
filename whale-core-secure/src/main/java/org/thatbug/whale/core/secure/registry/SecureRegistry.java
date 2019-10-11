@@ -29,7 +29,6 @@ public class SecureRegistry {
         this.defaultExcludePatterns.add("/error/**");
         this.defaultExcludePatterns.add("/assets/**");
         this.defaultExcludePatterns.add("/webjars/**");
-        this.defaultExcludePatterns.add("/swagger-resources/**");
     }
 
     /**

@@ -14,6 +14,11 @@ public interface NacosConstant {
     String NACOS_ADDR = "127.0.0.1:8848";
 
     /**
+     * nacos 启用
+     */
+    Boolean NACOS_ENABLE = false;
+
+    /**
      * nacos 配置前缀
      */
     String NACOS_CONFIG_PREFIX = "whale";

@@ -37,7 +37,7 @@ public class WhaleCodeGenerator {
     /**
      * 代码所在系统
      */
-    private String systemName = DevelopConstant.SWORD_NAME;
+    private String systemName;
     /**
      * 代码模块名称
      */
@@ -61,11 +61,11 @@ public class WhaleCodeGenerator {
     /**
      * 需要去掉的表前缀
      */
-    private String[] tablePrefix = {"whale_"};
+    private String[] tablePrefix = {""};
     /**
      * 需要生成的表名(两者只能取其一)
      */
-    private String[] includeTables = {"whale_test"};
+    private String[] includeTables = {};
     /**
      * 需要排除的表名(两者只能取其一)
      */
@@ -73,11 +73,11 @@ public class WhaleCodeGenerator {
     /**
      * 是否包含基础业务字段
      */
-    private Boolean hasSuperEntity = Boolean.FALSE;
+    private Boolean hasSuperEntity = Boolean.TRUE;
     /**
      * 是否包含包装器
      */
-    private Boolean hasWrapper = Boolean.FALSE;
+    private Boolean hasWrapper = Boolean.TRUE;
     /**
      * 基础业务字段
      */
@@ -86,6 +86,7 @@ public class WhaleCodeGenerator {
      * 租户字段
      */
     private String tenantColumn = "tenant_id";
+
     /**
      * 是否启用swagger
      */
@@ -108,13 +109,22 @@ public class WhaleCodeGenerator {
     private String password;
 
     public void run() {
+        //默认参数
         Properties props = getProperties();
+        //代码生成器
         AutoGenerator mpg = new AutoGenerator();
+
+        //全局配置
         GlobalConfig gc = new GlobalConfig();
-        String outputDir = getOutputDir();
+
+        //作者
         String author = props.getProperty("author");
-        gc.setOutputDir(outputDir);
         gc.setAuthor(author);
+
+        //输出地址
+        String outputDir = getOutputDir();
+        gc.setOutputDir(outputDir);
+
         gc.setFileOverride(true);
         gc.setOpen(false);
         gc.setActiveRecord(false);
@@ -127,7 +137,10 @@ public class WhaleCodeGenerator {
         gc.setServiceImplName("%sServiceImpl");
         gc.setControllerName("%sController");
         gc.setSwagger2(isSwagger2);
+
         mpg.setGlobalConfig(gc);
+
+        //数据库
         DataSourceConfig dsc = new DataSourceConfig();
         String driverName = Func.toStr(this.driverName, props.getProperty("spring.datasource.driver-class-name"));
         if (StringUtil.containsAny(driverName, DbType.MYSQL.getDb())) {
@@ -145,6 +158,9 @@ public class WhaleCodeGenerator {
         dsc.setUsername(Func.toStr(this.username, props.getProperty("spring.datasource.username")));
         dsc.setPassword(Func.toStr(this.password, props.getProperty("spring.datasource.password")));
         mpg.setDataSource(dsc);
+
+
+
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         // strategy.setCapitalMode(true);// 全局大写命名
@@ -173,6 +189,8 @@ public class WhaleCodeGenerator {
         strategy.setEntityLombokModel(true);
         strategy.setControllerMappingHyphenStyle(true);
         mpg.setStrategy(strategy);
+
+
         // 包配置
         PackageConfig pc = new PackageConfig();
         // 控制台扫描
@@ -182,7 +200,10 @@ public class WhaleCodeGenerator {
         pc.setEntity("entity");
         pc.setXml("mapper");
         mpg.setPackageInfo(pc);
+
+        //自定义配置
         mpg.setCfg(getInjectionConfig());
+
         mpg.execute();
     }
 
@@ -234,6 +255,7 @@ public class WhaleCodeGenerator {
                 }
             });
         }
+
         if (Func.isNotBlank(packageWebDir)) {
             if (Func.equals(systemName, DevelopConstant.SWORD_NAME)) {
                 focList.add(new FileOutConfig("/templates/sword/action.js.vm") {
@@ -320,7 +342,7 @@ public class WhaleCodeGenerator {
      * @return outputDir
      */
     public String getOutputDir() {
-        return  System.getProperty("user.dir")+ "/src/main/java";
+        return System.getProperty("user.dir") + "/src/main/java";
     }
 
     /**

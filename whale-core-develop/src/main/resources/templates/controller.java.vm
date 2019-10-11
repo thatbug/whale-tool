@@ -65,7 +65,7 @@ public class $!{table.controllerName} {
 	 */
 	@GetMapping("/list")
 	@ApiOperationSupport(order = 2)
-	@ApiOperation(value = "分页", notes = "传入$!{table.entityPath}")
+	@ApiOperation(value = "列表", notes = "传入$!{table.entityPath}")
 	public R<IPage<$!{entity}VO>> list($!{entity} $!{table.entityPath}, Query query) {
 		IPage<$!{entity}> pages = $!{table.entityPath}Service.page(Condition.getPage(query), Condition.getQueryWrapper($!{table.entityPath}));
 		return R.data($!{entity}Wrapper.build().pageVO(pages));
@@ -88,7 +88,7 @@ public class $!{table.controllerName} {
 	 */
 	@GetMapping("/list")
 	@ApiOperationSupport(order = 2)
-	@ApiOperation(value = "分页", notes = "传入$!{table.entityPath}")
+	@ApiOperation(value = "列表", notes = "传入$!{table.entityPath}")
 	public R<IPage<$!{entity}>> list($!{entity} $!{table.entityPath}, Query query) {
 		IPage<$!{entity}> pages = $!{table.entityPath}Service.page(Condition.getPage(query), Condition.getQueryWrapper($!{table.entityPath}));
 		return R.data(pages);
@@ -100,7 +100,7 @@ public class $!{table.controllerName} {
 	 */
 	@GetMapping("/page")
 	@ApiOperationSupport(order = 3)
-	@ApiOperation(value = "分页", notes = "传入$!{table.entityPath}")
+	@ApiOperation(value = "自定义分页（特殊情况下使用）", notes = "传入$!{table.entityPath}")
 	public R<IPage<$!{entity}VO>> page($!{entity}VO $!{table.entityPath}, Query query) {
 		IPage<$!{entity}VO> pages = $!{table.entityPath}Service.select$!{entity}Page(Condition.getPage(query), $!{table.entityPath});
 		return R.data(pages);
