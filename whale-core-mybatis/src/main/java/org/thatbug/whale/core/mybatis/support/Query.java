@@ -31,13 +31,13 @@ public class Query {
     /**
      * 排序的字段名
      */
-    @ApiModelProperty(hidden = true)
+    @ApiModelProperty(value = "升序的字段")
     private String ascs;
 
     /**
      * 排序方式
      */
-    @ApiModelProperty(hidden = true)
+    @ApiModelProperty(value = "倒叙的字段")
     private String descs;
 
 }
