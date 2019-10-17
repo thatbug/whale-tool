@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.ser.BeanPropertyWriter;
 import com.fasterxml.jackson.databind.ser.BeanSerializerModifier;
 import org.thatbug.whale.core.tool.utils.StringPool;
-import org.thatbug.whale.core.tool.utils.StringUtil;
 
 import java.io.IOException;
 import java.time.OffsetDateTime;
@@ -66,7 +65,7 @@ public class WhaleBeanSerializerModifier extends BeanSerializerModifier {
         JsonSerializer<Object> NUMBER_JSON_SERIALIZER = new JsonSerializer<Object>() {
             @Override
             public void serialize(Object value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-                gen.writeNumber(StringUtil.INDEX_NOT_FOUND);
+                gen.writeNull();
             }
         };
 

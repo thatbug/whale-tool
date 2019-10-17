@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class TreeNode extends BaseNode {
+public class TreeNode extends BaseNode implements Comparable<TreeNode>{
 
     private String title;
 
@@ -19,4 +19,10 @@ public class TreeNode extends BaseNode {
 
     private Integer value;
 
+    private Integer sort;
+
+    @Override
+    public int compareTo(TreeNode treeNode) {
+        return this.sort-treeNode.getSort();
+    }
 }

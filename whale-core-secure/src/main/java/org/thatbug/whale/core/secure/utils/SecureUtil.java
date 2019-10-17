@@ -40,6 +40,11 @@ public class SecureUtil {
     private final static Integer AUTH_LENGTH = TokenConstant.AUTH_LENGTH;
     private static String BASE64_SECURITY = Base64.getEncoder().encodeToString(TokenConstant.SIGN_KEY.getBytes(Charsets.UTF_8));
 
+    //一天过期
+    private static int AccessTokenValidity = 86400;
+    //刷新的token 7天过期
+    private static int RefreshTokenValidity = 604800;
+
     private static IClientDetailsService clientDetailsService;
 
     static {
@@ -418,6 +423,58 @@ public class SecureUtil {
             return StringUtil.equals(clientId, clientDetails.getClientId()) && StringUtil.equals(clientSecret, clientDetails.getClientSecret());
         }
         return false;
+    }
+
+
+    /**
+     * 创建令牌
+     *
+     * @param user      user
+     * @param audience  audience
+     * @param issuer    issuer
+     * @param tokenType tokenType
+     * @return jwt
+     */
+    public static TokenInfo createJWTNoClient(Map<String, String> user, String audience, String issuer, String tokenType) {
+
+        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+
+        long nowMillis = System.currentTimeMillis();
+        Date now = new Date(nowMillis);
+
+        //生成签名密钥
+        byte[] apiKeySecretBytes = Base64.getDecoder().decode(BASE64_SECURITY);
+        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
+
+        //添加构成JWT的类
+        JwtBuilder builder = Jwts.builder().setHeaderParam("typ", "JsonWebToken")
+                .setIssuer(issuer)
+                .setAudience(audience)
+                .signWith(signatureAlgorithm, signingKey);
+
+        //设置JWT参数
+        user.forEach(builder::claim);
+
+
+        //添加Token过期时间
+        long expireMillis;
+        if (tokenType.equals(TokenConstant.ACCESS_TOKEN)) {
+            expireMillis = AccessTokenValidity * 1000;
+        } else if (tokenType.equals(TokenConstant.REFRESH_TOKEN)) {
+            expireMillis = RefreshTokenValidity * 1000;
+        } else {
+            expireMillis = getExpire();
+        }
+        long expMillis = nowMillis + expireMillis;
+        Date exp = new Date(expMillis);
+        builder.setExpiration(exp).setNotBefore(now);
+
+        // 组装Token信息
+        TokenInfo tokenInfo = new TokenInfo();
+        tokenInfo.setToken(builder.compact());
+        tokenInfo.setExpire((int) expireMillis / 1000);
+
+        return tokenInfo;
     }
 
 }
