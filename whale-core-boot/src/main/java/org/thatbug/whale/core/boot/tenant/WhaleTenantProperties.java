@@ -32,6 +32,6 @@ public class WhaleTenantProperties {
     /**
      * 多租户系统数据表
      */
-    private List<String> bladeTables = Arrays.asList("whale_notice", "whale_log_api", "whale_log_error", "whale_log_usual");
+    private List<String> whaleTables = Arrays.asList("whale_notice", "whale_log_api", "whale_log_error", "whale_log_usual");
 }
 

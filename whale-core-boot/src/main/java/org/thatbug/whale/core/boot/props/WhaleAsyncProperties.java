@@ -12,7 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Getter
 @Setter
-@ConfigurationProperties("blade.async")
+@ConfigurationProperties("whale.async")
 public class WhaleAsyncProperties {
     /**
      * 异步核心线程数，默认：2

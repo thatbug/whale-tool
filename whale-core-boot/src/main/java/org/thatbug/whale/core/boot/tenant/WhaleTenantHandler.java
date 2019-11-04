@@ -28,7 +28,7 @@ public class WhaleTenantHandler implements TenantHandler {
      */
     @Override
     public Expression getTenantId() {
-        return new StringValue(Func.toStr(SecureUtil.getTenantId(), TenantConstant.DEFAULT_TENANT_ID));
+        return new StringValue(Func.toStr(StringUtil.isEmpty(SecureUtil.getTenantId())?null:SecureUtil.getTenantId(), TenantConstant.DEFAULT_TENANT_ID));
     }
 
     /**
@@ -49,13 +49,7 @@ public class WhaleTenantHandler implements TenantHandler {
      */
     @Override
     public boolean doTableFilter(String tableName) {
-        return !(
-                (
-                        (properties.getTables().size() > 0 && properties.getTables().contains(tableName))
-                                || properties.getBladeTables().contains(tableName)
-                )
-                        && StringUtil.isNotBlank(SecureUtil.getTenantId())
-        );
+        return !properties.getTables().contains(tableName);
     }
 }
 

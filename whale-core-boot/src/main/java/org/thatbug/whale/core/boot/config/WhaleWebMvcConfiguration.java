@@ -12,7 +12,7 @@ import org.thatbug.whale.core.boot.resolver.TokenArgumentResolver;
 import java.util.List;
 
 /**
- * web配置
+ * web配置 /设置whaleUser对象
  *
  * @author qzl
  * @date 17:27 2019/9/19

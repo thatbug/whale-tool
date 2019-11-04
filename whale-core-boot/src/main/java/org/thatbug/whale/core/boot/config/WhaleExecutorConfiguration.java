@@ -16,7 +16,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- * 异步处理
+ * 异步处理 支持定时任务
  *
  * @author qzl
  * @date 17:08 2019/9/19
