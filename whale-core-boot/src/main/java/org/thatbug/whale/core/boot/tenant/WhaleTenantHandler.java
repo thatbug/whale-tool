@@ -49,7 +49,7 @@ public class WhaleTenantHandler implements TenantHandler {
      */
     @Override
     public boolean doTableFilter(String tableName) {
-        return !properties.getTables().contains(tableName);
+        return !(properties.getTables().contains(tableName) && !StringUtil.isEmpty(SecureUtil.getTenantId()));
     }
 }
 

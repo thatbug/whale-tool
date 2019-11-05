@@ -49,29 +49,7 @@ public class TenantConfiguration {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
         List<ISqlParser> sqlParserList = new ArrayList<>();
         TenantSqlParser tenantSqlParser = new MyTenantSqlParser();
-
         tenantSqlParser.setTenantHandler(tenantHandler);
-       /* tenantSqlParser.setTenantHandler(new TenantHandler() {
-
-            @Override
-            public Expression getTenantId() {
-                return new StringValue("1");
-            }
-
-            @Override
-            public String getTenantIdColumn() {
-                return "orgs";
-            }
-
-            @Override
-            public boolean doTableFilter(String tableName) {
-                // 这里可以判断是否过滤表
-                if (!"student".equals(tableName)) {
-                    return true;
-                }
-                return false;
-            }
-        });*/
         sqlParserList.add(tenantSqlParser);
         paginationInterceptor.setSqlParserList(sqlParserList);
 
