@@ -78,16 +78,18 @@ public class WhaleBeanSerializerModifier extends BeanSerializerModifier {
         JsonSerializer<Object> ARRAY_JSON_SERIALIZER = new JsonSerializer<Object>() {
             @Override
             public void serialize(Object value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-                gen.writeStartArray();
-                gen.writeEndArray();
+                gen.writeNull();
+//                gen.writeStartArray();
+//                gen.writeEndArray();
             }
         };
 
         JsonSerializer<Object> OBJECT_JSON_SERIALIZER = new JsonSerializer<Object>() {
             @Override
             public void serialize(Object value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-                gen.writeStartObject();
-                gen.writeEndObject();
+//                gen.writeStartObject();
+//                gen.writeEndObject();
+                gen.writeNull();
             }
         };
 
