@@ -71,6 +71,17 @@ public class $!{table.controllerName} {
 		return R.data($!{entity}Wrapper.build().pageVO(pages));
 	}
 
+	/**
+	* 无分页列表  $!{table.comment}
+	*/
+	@GetMapping("/list-no-page")
+	@ApiOperationSupport(order = 3)
+	@ApiOperation(value = "$!{table.comment}-列表", notes = "传入$!{table.entityPath}")
+	public R<List<$!{entity}VO>> listNoPage($!{entity} $!{table.entityPath}) {
+		List<$!{entity}> list = $!{table.entityPath}Service.list(Condition.getQueryWrapper($!{table.entityPath}));
+		return R.data($!{entity}Wrapper.build().listVO(list));
+	}
+
 #else
 	/**
 	 * 详情
@@ -93,6 +104,18 @@ public class $!{table.controllerName} {
 		IPage<$!{entity}> pages = $!{table.entityPath}Service.page(Condition.getPage(query), Condition.getQueryWrapper($!{table.entityPath}));
 		return R.data(pages);
 	}
+
+	/**
+	 * 无分页列表  $!{table.comment}
+	 */
+	@GetMapping("/list-no-page")
+	@ApiOperationSupport(order = 3)
+	@ApiOperation(value = "$!{table.comment}-列表", notes = "传入$!{table.entityPath}")
+	public R<List<$!{entity}>> listNoPage($!{entity} $!{table.entityPath}) {
+		List<$!{entity}> list = $!{table.entityPath}Service.list(Condition.getQueryWrapper($!{table.entityPath}));
+		return R.data(list);
+	}
+
 #end
 
 	/**
