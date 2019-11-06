@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import javax.validation.Valid;
+import java.util.List;
 
 import org.thatbug.whale.core.mybatis.support.Condition;
 import org.thatbug.whale.core.mybatis.support.Query;
