@@ -1,11 +1,14 @@
 package org.thatbug.whale.core.mybatis.support;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.thatbug.whale.core.mybatis.annotations.IsLike;
 import org.thatbug.whale.core.tool.utils.BeanUtil;
 import org.thatbug.whale.core.tool.utils.Func;
 
+import java.lang.reflect.Field;
 import java.util.Map;
 
 /**
@@ -37,7 +40,37 @@ public class Condition {
      * @return
      */
     public static <T> QueryWrapper<T> getQueryWrapper(T entity) {
-        return new QueryWrapper<>(entity);
+        QueryWrapper<T> tQueryWrapper = new QueryWrapper<>(entity);
+        Class<?> aClass = entity.getClass();
+        Field[] fields = aClass.getDeclaredFields();
+        for (Field field : fields) {
+            IsLike isLike = field.getAnnotation(IsLike.class);
+            if (isLike == null) {
+                continue;
+            }
+            try {
+                //打开私有访问
+                field.setAccessible(true);
+                Object o = field.get(entity);
+                if (o != null) {
+                    TableField tableField = field.getAnnotation(TableField.class);
+                    String name;
+                    if (tableField !=null) {
+                        name = tableField.value();
+                    }else {
+                        name = field.getName();
+                    }
+                    field.set(entity,null);
+                    tQueryWrapper.like(name,o);
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+        return tQueryWrapper;
     }
 
     /**
