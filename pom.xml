@@ -198,4 +198,15 @@
         </profile>
     </profiles>
 
+    <distributionManagement>
+        <repository>
+            <id>rdc-releases</id>
+            <url>https://repo.rdc.aliyun.com/repository/111370-release-A6wrv3/</url>
+        </repository>
+        <snapshotRepository>
+            <id>rdc-snapshots</id>
+            <url>https://repo.rdc.aliyun.com/repository/111370-snapshot-6r6Bb8/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 </project>
